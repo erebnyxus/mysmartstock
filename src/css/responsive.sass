@@ -1,0 +1,149 @@
+// SmartStock Responsive Design System
+
+// Breakpoints
+$breakpoint-xs: 599px  // Mobile
+$breakpoint-sm: 600px  // Small tablet
+$breakpoint-md: 1023px // Large tablet
+$breakpoint-lg: 1024px // Desktop
+$breakpoint-xl: 1439px // Large desktop
+$breakpoint-xxl: 1440px // Extra large desktop
+
+// Responsive mixins
+@mixin xs-only
+  @media (max-width: $breakpoint-xs)
+    @content
+
+@mixin sm-and-up
+  @media (min-width: $breakpoint-sm)
+    @content
+
+@mixin sm-only
+  @media (min-width: $breakpoint-sm) and (max-width: $breakpoint-md)
+    @content
+
+@mixin md-and-up
+  @media (min-width: $breakpoint-md)
+    @content
+
+@mixin md-only
+  @media (min-width: $breakpoint-md) and (max-width: $breakpoint-lg)
+    @content
+
+@mixin lg-and-up
+  @media (min-width: $breakpoint-lg)
+    @content
+
+@mixin lg-only
+  @media (min-width: $breakpoint-lg) and (max-width: $breakpoint-xl)
+    @content
+
+@mixin xl-and-up
+  @media (min-width: $breakpoint-xl)
+    @content
+
+// Touch device detection
+@mixin touch-device
+  @media (hover: none) and (pointer: coarse)
+    @content
+
+// Orientation specific styles
+@mixin landscape
+  @media (orientation: landscape)
+    @content
+
+@mixin portrait
+  @media (orientation: portrait)
+    @content
+
+// Typography scaling
+$font-size-base-mobile: 14px
+$font-size-base-tablet: 15px
+$font-size-base-desktop: 16px
+
+// Spacing scale (based on 8px grid)
+$spacing-unit: 8px
+$spacing-xs: $spacing-unit
+$spacing-sm: $spacing-unit * 2
+$spacing-md: $spacing-unit * 3
+$spacing-lg: $spacing-unit * 4
+$spacing-xl: $spacing-unit * 5
+
+// Responsive spacing classes
+.q-pa-responsive
+  padding: $spacing-sm
+  @include sm-and-up
+    padding: $spacing-md
+  @include lg-and-up
+    padding: $spacing-lg
+
+.q-ma-responsive
+  margin: $spacing-sm
+  @include sm-and-up
+    margin: $spacing-md
+  @include lg-and-up
+    margin: $spacing-lg
+
+// Touch target sizes
+$touch-target-size: 44px
+
+// Utility classes for responsive behavior
+.hide-on-mobile
+  @include xs-only
+    display: none !important
+
+.hide-on-tablet
+  @include sm-only
+    display: none !important
+
+.hide-on-desktop
+  @include lg-and-up
+    display: none !important
+
+.mobile-only
+  @include sm-and-up
+    display: none !important
+
+.tablet-only
+  @include xs-only
+    display: none !important
+  @include lg-and-up
+    display: none !important
+
+.desktop-only
+  @include xs-only
+    display: none !important
+  @include sm-only
+    display: none !important
+
+// Card responsiveness
+.responsive-card
+  width: 100%
+  @include md-and-up
+    max-width: 90%
+  @include lg-and-up
+    max-width: 80%
+
+// Responsive grid adjustments
+.col-responsive
+  width: 100%
+  @include sm-and-up
+    width: 50%
+  @include lg-and-up
+    width: 33.33%
+
+// Responsive text alignment
+.text-responsive-center
+  text-align: center
+  @include md-and-up
+    text-align: left
+
+// Responsive container
+.container-responsive
+  width: 100%
+  padding: 0 $spacing-sm
+  @include sm-and-up
+    padding: 0 $spacing-md
+  @include lg-and-up
+    padding: 0 $spacing-lg
+    max-width: 1200px
+    margin: 0 auto

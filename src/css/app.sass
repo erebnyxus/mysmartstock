@@ -1,1 +1,43 @@
 // app global css in Sass form
+@import 'responsive'
+
+// Global responsive styles
+html, body
+  font-size: 14px
+  @media (min-width: 600px)
+    font-size: 15px
+  @media (min-width: 1024px)
+    font-size: 16px
+
+// Improve touch targets on mobile
+.q-btn
+  @media (hover: none) and (pointer: coarse)
+    min-height: 44px
+
+// Responsive padding utility
+.content-padding
+  padding: 8px
+  @media (min-width: 600px)
+    padding: 16px
+  @media (min-width: 1024px)
+    padding: 24px
+
+// Responsive typography
+.text-h1, .text-h2, .text-h3, .text-h4, .text-h5, .text-h6
+  line-height: 1.2
+  @media (max-width: 599px)
+    // Reduce heading sizes on mobile
+    &.responsive
+      transform: scale(0.9)
+      transform-origin: left top
+
+// Bottom navigation for mobile
+.bottom-nav
+  position: fixed
+  bottom: 0
+  left: 0
+  right: 0
+  z-index: 1000
+  background: white
+  @media (min-width: 1024px)
+    display: none

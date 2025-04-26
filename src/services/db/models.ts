@@ -1,5 +1,13 @@
 /**
- * 产品模型
+ * SmartStock Database Models
+ *
+ * This file defines the data models used in the SmartStock application.
+ * These models correspond to the database tables defined in the schema.
+ */
+
+/**
+ * Product Model
+ * Represents a product in the inventory system
  */
 export interface Product {
   id?: string;
@@ -8,7 +16,7 @@ export interface Product {
   description?: string;
   category_id?: string;
   tags?: string[];
-  attributes?: Record<string, any>;
+  attributes?: Record<string, string | number | boolean | string[]>;
   images?: string[];
   barcode?: string;
   created_at: Date;
@@ -16,7 +24,8 @@ export interface Product {
 }
 
 /**
- * 库存模型
+ * Inventory Model
+ * Represents the current inventory status of a product
  */
 export interface Inventory {
   id?: string;
@@ -33,12 +42,13 @@ export interface Inventory {
 }
 
 /**
- * 库存操作记录模型
+ * Inventory Transaction Model
+ * Records inventory operations (stock-in, stock-out, adjustments)
  */
 export interface InventoryTransaction {
   id?: string;
   product_id: string;
-  type: 'in' | 'out' | 'adjust'; // 入库、出库、调整
+  type: 'in' | 'out' | 'adjust'; // stock-in, stock-out, adjustment
   quantity: number;
   before_quantity: number;
   after_quantity: number;
@@ -49,7 +59,8 @@ export interface InventoryTransaction {
 }
 
 /**
- * 分类模型
+ * Category Model
+ * Represents product categories in a hierarchical structure
  */
 export interface Category {
   id?: string;
@@ -60,16 +71,19 @@ export interface Category {
 }
 
 /**
- * 设置模型
+ * Settings Model
+ * Stores application settings and preferences
  */
 export interface Settings {
   id: string;
-  value: any;
+  value: string | number | boolean | null | Record<string, unknown> | unknown[];
   updated_at?: Date;
 }
 
 /**
- * 库存与产品连接模型（用于查询显示）
+ * Inventory with Product Model
+ * Combined model for displaying inventory with product details
+ * Used for UI display purposes
  */
 export interface InventoryWithProduct {
   id: string;
@@ -83,5 +97,97 @@ export interface InventoryWithProduct {
   cost_price?: number;
   selling_price?: number;
   tags?: string[];
-  status: 'normal' | 'low' | 'out'; // 正常、低库存、缺货
+  status: 'normal' | 'low' | 'out'; // normal, low stock, out of stock
+}
+
+/**
+ * User Model
+ * For future multi-user support (mentioned in PRD section 10.1)
+ */
+export interface User {
+  id?: string;
+  username: string;
+  email?: string;
+  display_name?: string;
+  password_hash?: string; // Stored securely
+  role?: 'admin' | 'user' | 'viewer';
+  preferences?: Record<string, unknown>;
+  created_at: Date;
+  updated_at: Date;
+  last_login?: Date;
+}
+
+/**
+ * Supplier Model
+ * For future supplier management (mentioned in PRD section 10.1)
+ */
+export interface Supplier {
+  id?: string;
+  name: string;
+  contact_person?: string;
+  email?: string;
+  phone?: string;
+  address?: string;
+  notes?: string;
+  created_at: Date;
+  updated_at: Date;
+}
+
+/**
+ * Order Model
+ * For future simple order management (mentioned in PRD section 10.1)
+ */
+export interface Order {
+  id?: string;
+  reference: string;
+  date: Date;
+  status: 'draft' | 'pending' | 'completed' | 'cancelled';
+  supplier_id?: string;
+  total_amount?: number;
+  notes?: string;
+  created_at: Date;
+  updated_at: Date;
+}
+
+/**
+ * Order Item Model
+ * Individual items within an order
+ */
+export interface OrderItem {
+  id?: string;
+  order_id: string;
+  product_id: string;
+  quantity: number;
+  unit_price?: number;
+  total_price?: number;
+}
+
+/**
+ * Inventory Report Model
+ * For generating inventory reports
+ */
+export interface InventoryReport {
+  id?: string;
+  name: string;
+  type: 'inventory' | 'transaction' | 'value' | 'turnover';
+  date_range: {
+    start: Date;
+    end: Date;
+  };
+  parameters?: Record<string, unknown>;
+  created_at: Date;
+  data?: unknown; // Report data in JSON format
+}
+
+/**
+ * Barcode Model
+ * For barcode generation and management
+ */
+export interface Barcode {
+  id?: string;
+  product_id: string;
+  barcode_type: 'ean13' | 'code128' | 'qrcode' | 'datamatrix';
+  barcode_value: string;
+  label_template?: string;
+  created_at: Date;
 }

@@ -1,5 +1,11 @@
-import type { Table } from 'dexie';
-import Dexie from 'dexie';
+/**
+ * SmartStock Database Schema
+ *
+ * This file defines the database schema for the SmartStock application.
+ * It uses Dexie.js to interact with IndexedDB for local storage.
+ */
+
+import Dexie, { type Table } from 'dexie';
 import type {
   Product,
   Inventory,
@@ -10,8 +16,6 @@ import type {
   Supplier,
   Order,
   OrderItem,
-  InventoryReport,
-  Barcode,
 } from './models';
 
 /**
@@ -30,8 +34,6 @@ export class SmartStockDatabase extends Dexie {
   suppliers!: Table<Supplier>;
   orders!: Table<Order>;
   orderItems!: Table<OrderItem>;
-  reports!: Table<InventoryReport>;
-  barcodes!: Table<Barcode>;
 
   constructor() {
     super('SmartStockDB');
@@ -44,20 +46,13 @@ export class SmartStockDatabase extends Dexie {
       transactions: '++id, product_id, type, date, reference',
       categories: '++id, name, parent_id',
       settings: 'id',
-    });
 
-    // Define schema for future expansion tables (not created in version 1)
-    // These will be added in future versions when needed
-    /*
-    this.version(2).stores({
+      // Extended tables for future expansion (as mentioned in PRD section 10.1)
       users: '++id, username, email',
-      suppliers: '++id, name, contact_person',
-      orders: '++id, date, status, reference, supplier_id',
-      orderItems: '++id, order_id, product_id',
-      reports: '++id, name, type, created_at',
-      barcodes: '++id, product_id, barcode_value'
+      suppliers: '++id, name, contact',
+      orders: '++id, date, status, reference',
+      orderItems: '++id, order_id, product_id, quantity',
     });
-    */
   }
 
   /**

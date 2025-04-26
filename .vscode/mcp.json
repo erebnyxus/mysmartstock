@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "front End Dev": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "blowback-context"]
+    }
+  }
+}
