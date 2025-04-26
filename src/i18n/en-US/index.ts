@@ -1,7 +1,12 @@
-// This is just an example,
-// so you can safely delete all default props below
+import inventory from './inventory';
+import common from './common';
 
 export default {
+  // Common messages
   failed: 'Action failed',
-  success: 'Action was successful'
+  success: 'Action was successful',
+
+  // Import module translations
+  inventory,
+  common,
 };

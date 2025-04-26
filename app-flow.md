@@ -25,13 +25,16 @@
 
 1. **Dashboard**
 
-   - Current inventory status overview
-   - Low stock alerts
-   - Recent activity summary
-   - Quick action buttons
-   - Inventory value trend chart
-   - Quick links to common tasks
-   -
+- Current inventory status overview
+- Low stock alerts
+- Recent activity summary
+- Quick action buttons
+- Business intelligence visualizations:
+  - Inventory value trend chart
+  - Sales performance analytics
+  - Category distribution graphs
+  - Product turnover rates
+- Quick links to common tasks
 
 2. **Common Paths**
    - Dashboard → Product Management → Add/Edit Product

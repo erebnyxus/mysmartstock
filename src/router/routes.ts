@@ -5,15 +5,43 @@ const routes: RouteRecordRaw[] = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/DashboardPage.vue') },
-      { path: 'products', component: () => import('pages/ProductsPage.vue') },
-      { path: 'products/new', component: () => import('pages/ProductFormPage.vue') },
-      { path: 'products/edit/:id', component: () => import('pages/ProductFormPage.vue') },
-      { path: 'inventory', component: () => import('pages/InventoryPage.vue') },
-      { path: 'stock-in', component: () => import('pages/StockInPage.vue') },
-      { path: 'stock-out', component: () => import('pages/StockOutPage.vue') },
-      { path: 'reports', component: () => import('pages/ReportsPage.vue') },
-      { path: 'settings', component: () => import('pages/SettingsPage.vue') },
+      {
+        path: '',
+        name: 'dashboard',
+        component: () => import('pages/DashboardPage.vue'),
+      },
+      {
+        path: 'products',
+        name: 'products',
+        component: () => import('pages/ProductsPage.vue'),
+      },
+      {
+        path: 'product/:id',
+        name: 'product-details',
+        component: () => import('pages/ProductDetailPage.vue'),
+        props: true,
+      },
+      {
+        path: 'product-form/:id?',
+        name: 'product-form',
+        component: () => import('pages/ProductFormPage.vue'),
+        props: true,
+      },
+      {
+        path: 'inventory',
+        name: 'inventory',
+        component: () => import('pages/InventoryPage.vue'),
+      },
+      {
+        path: 'reports',
+        name: 'reports',
+        component: () => import('pages/ReportsPage.vue'),
+      },
+      {
+        path: 'settings',
+        name: 'settings',
+        component: () => import('pages/SettingsPage.vue'),
+      },
     ],
   },
 
