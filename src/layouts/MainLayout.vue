@@ -40,7 +40,7 @@
               v-model="searchText"
               dense
               outlined
-              placeholder="搜索..."
+              placeholder="Search..."
               class="full-width"
               bg-color="white"
               dark
@@ -65,7 +65,7 @@
     >
       <q-scroll-area class="fit">
         <q-list>
-          <q-item-label header>SmartStock 菜单</q-item-label>
+          <q-item-label header>SmartStock Menu</q-item-label>
 
           <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
         </q-list>
@@ -125,44 +125,44 @@ const searchText = ref('');
 // Navigation links
 const essentialLinks: EssentialLinkProps[] = [
   {
-    title: '仪表盘',
-    caption: '库存概览与统计',
+    title: 'Dashboard',
+    caption: 'Overview and statistics',
     icon: 'dashboard',
     link: '/',
   },
   {
-    title: '商品管理',
-    caption: '添加和管理商品',
+    title: 'Product Management',
+    caption: 'Add and manage products',
     icon: 'inventory',
     link: '/products',
   },
   {
-    title: '库存管理',
-    caption: '查看和调整库存',
+    title: 'Inventory Management',
+    caption: 'View and adjust inventory',
     icon: 'inventory_2',
     link: '/inventory',
   },
   {
-    title: '入库登记',
-    caption: '记录入库操作',
+    title: 'Stock In',
+    caption: 'Record stock-in operations',
     icon: 'add_shopping_cart',
     link: '/stock-in',
   },
   {
-    title: '出库登记',
-    caption: '记录出库操作',
+    title: 'Stock Out',
+    caption: 'Record stock-out operations',
     icon: 'shopping_cart_checkout',
     link: '/stock-out',
   },
   {
-    title: '库存报表',
-    caption: '生成库存报表',
+    title: 'Inventory Reports',
+    caption: 'Generate inventory reports',
     icon: 'bar_chart',
     link: '/reports',
   },
   {
-    title: '系统设置',
-    caption: '调整系统配置',
+    title: 'System Settings',
+    caption: 'Adjust system configurations',
     icon: 'settings',
     link: '/settings',
   },
