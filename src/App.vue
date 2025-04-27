@@ -8,31 +8,31 @@ import { useProductStore } from './stores/product-store';
 import { useInventoryStore } from './stores/inventory-store';
 import { db } from './services/db';
 
-// 获取存储实例
+// Get store instances
 const productStore = useProductStore();
 const inventoryStore = useInventoryStore();
 
-// 在应用挂载时初始化数据
+// Initialize data when the application is mounted
 onMounted(async () => {
   try {
-    console.log('初始化SmartStock应用...');
-    
-    // 初始化数据库和默认数据
+    console.log('Initializing SmartStock application...');
+
+    // Initialize the database and default data
     await db.initializeDefaultData();
-    
-    // 预加载主要数据
+
+    // Preload main data
     await Promise.all([
       productStore.fetchAllProducts(),
       productStore.fetchAllCategories(),
-      inventoryStore.fetchAllInventory()
+      inventoryStore.fetchAllInventory(),
     ]);
-    
-    // 合并产品和库存数据以供显示
+
+    // Merge product and inventory data for display
     await inventoryStore.fetchInventoryWithProducts();
-    
-    console.log('SmartStock应用初始化完成');
+
+    console.log('SmartStock application initialized successfully');
   } catch (error) {
-    console.error('应用初始化失败:', error);
+    console.error('Application initialization failed:', error);
   }
 });
 </script>
